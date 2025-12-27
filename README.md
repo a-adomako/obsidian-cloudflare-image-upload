@@ -1,6 +1,7 @@
 # Obsidian S3 Uploader: Maintenance & Architecture Guide
 
 Upload images from your clipboard or drag-and-drop directly to an S3-compatible bucket (Cloudflare R2 supported) and embed the public URL in your notes.
+This is based off the Imgur plugin by [gavvvr](https://github.com/gavvvr/obsidian-imgur-plugin)
 
 ## Features
 - Paste and drag-and-drop image uploads
