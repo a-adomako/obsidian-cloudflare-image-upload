@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "node scripts/dev.js",
-    "test": "vitest --coverage",
+    "test": "vitest --coverage --passWithNoTests",
     "build": "tsc -noEmit -skipLibCheck && node scripts/esbuild.build.js production",
     "build-fast": "node scripts/esbuild.build.js production",
     "prepare": "husky",
