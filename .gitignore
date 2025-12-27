@@ -1,0 +1,25 @@
+# Intellij
+*.iml
+.idea
+.DS_Store
+
+# npm
+node_modules
+.env
+.env.*
+
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# build
+main.js
+*.js.map
+
+# eslint
+.eslintcache
+
+# c8
+coverage/
+
+test-results.xml

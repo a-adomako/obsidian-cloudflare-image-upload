@@ -1,0 +1,10 @@
+# apply stylistic rules from typescript-eslint
+9809b1e5f6b406a660f07dfa3b6bde6d01c43a43
+# sort imports with Perfectionist ESLint plugin
+161b26b495162f6fd03e9cb60923883f49169193
+# reformat with prettier 3.x
+89ee04b1f64c71215bd67cbb1174f4006c6ea0be
+# adjust the code after changing eslint rules set
+24e989405f38eafa8d746911adf3609e91d72c8d
+# apply new formatting with prettier
+0f55209de7c6482fa3a453b9fd9514b803d4dacb

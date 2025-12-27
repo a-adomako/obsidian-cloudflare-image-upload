@@ -1,0 +1,59 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  HUSKY: 0
+
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+      - name: Environment details
+        run: pnpm version
+      - name: Install dependencies
+        run: pnpm install
+      - name: Build
+        run: pnpm run build
+      - name: Test
+        run: pnpm run test
+      - name: Publish Test Results
+        uses: EnricoMi/publish-unit-test-result-action@v2
+        if: always()
+        with:
+          files: 'test-results.xml'
+      - name: Upload coverage data
+        uses: actions/upload-artifact@v4
+        with:
+          name: lcov.info
+          path: coverage/lcov.info
+  SonarScan:
+    needs: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Download coverage data
+        uses: actions/download-artifact@v4
+        with:
+          name: lcov.info
+          path: coverage/
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
